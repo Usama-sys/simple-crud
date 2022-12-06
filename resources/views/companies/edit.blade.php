@@ -86,7 +86,7 @@
                         </div>
                         <div>
                             <select name="type_id" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
-                                <option selected>{{ $company->type->type_name }}</option> 
+                                <option value="{{ $company->type->id  }}" selected>{{ $company->type->type_name }}</option> 
                                 @foreach ($types as $type)
                                 <option value="{{ $type->id }}">{{ $type->type_name }}</option>
                                 @endforeach         
@@ -113,6 +113,15 @@
                             <input readonly type="text" name="email" value="{{ $company->email }}"
                                 class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                 placeholder="Company Email">
+                        </div>
+                        <div>
+                            <strong>Date of Birth:</strong>
+                            <input  type="date" name="dob" value="{{ $company->dob }}"
+                                class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                placeholder="Date of Birth">
+                                @error('dob')
+                                <div class="text-sm text-red-600 space-y-1">{{ $message }}</div>
+                            @enderror
                         </div>
                        
                         <div class="flex items-center gap-4">

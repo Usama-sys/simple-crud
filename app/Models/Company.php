@@ -12,7 +12,7 @@ class Company extends Model
 
     protected $table = 'companies';
     protected $fillable= [
-        'name','address','email','type_id','created_by_user'
+        'name','address','email','dob','type_id','created_by_user'
     ];
 
     public function type()

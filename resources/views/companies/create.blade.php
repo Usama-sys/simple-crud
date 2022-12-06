@@ -86,7 +86,7 @@
                         </div>
                         <div>
                             <select name="type_id" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
-                                <option selected>Select type please</option>
+                                <option value="" selected>Select type please</option>
                                 @foreach ($types as $type )
                                 <option value="{{ $type->id }}">{{ $type->type_name }}</option>
                                 @endforeach
@@ -113,6 +113,15 @@
                                 class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                 placeholder="Company Email"  value="{{ old('email') }}">
                                 @error('email')
+                                <div class="text-sm text-red-600 space-y-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <strong>Date of Birth:</strong>
+                            <input type="date" name="dob"
+                                class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                placeholder="Date of birth"  value="{{ old('dob') }}">
+                                @error('dob')
                                 <div class="text-sm text-red-600 space-y-1">{{ $message }}</div>
                             @enderror
                         </div>

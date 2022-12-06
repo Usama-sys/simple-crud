@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('email');
+            $table->date('dob');
             $table->integer('created_by_user');
             $table->biginteger('type_id');
             $table->timestamps();

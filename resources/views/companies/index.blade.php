@@ -93,6 +93,7 @@
                     <th scope="col">name</th>
                     <th scope="col">address</th>
                     <th scope="col">email</th>
+                    <th scope="col">DOB</th>
                     <th scope="col">type</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -105,6 +106,7 @@
                         <td>{{ $company->name }}</td>
                         <td>{{ $company->address }}</td>
                         <td>{{ $company->email }}</td>
+                        <td>{{ $company->dob }}</td>
                         <td>{{ $company->type->type_name }}</td>
                         <td>
                             <form action="{{ route('companies.destroy', $company->id) }}" method="post">

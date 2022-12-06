@@ -55,6 +55,7 @@ class CompanyController extends Controller
             'name' => 'required',
             'address' => 'required',
             'email' => 'required|email|',
+            'dob' => 'required',
             'type_id'=>'required',
         ]);
         //  dd($request->post());
@@ -103,11 +104,12 @@ class CompanyController extends Controller
      */
     public function update(Request $request,Company $company)
     {
-        
+        // dd($company);
         $request->validate([
             'name' => 'required',
             'address' => 'required',
             'email' => 'required',
+            'dob' => 'required',
         ]);
         $company->fill($request->post())->save();
         return redirect()->route('companies.index')->with('success','Company has been Updated successfully');
