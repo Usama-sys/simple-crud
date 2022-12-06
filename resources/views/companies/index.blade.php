@@ -93,18 +93,19 @@
                     <th scope="col">name</th>
                     <th scope="col">address</th>
                     <th scope="col">email</th>
-                    {{-- <th scope="col">user</th> --}}
+                    <th scope="col">type</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($companies as $company)
+                {{-- @dd($company) --}}
                     <tr>
                         <th scope="row">{{ $loop->index + 1 }}</th>
                         <td>{{ $company->name }}</td>
                         <td>{{ $company->address }}</td>
                         <td>{{ $company->email }}</td>
-                        {{-- <td >{{  Auth::user()->name}}</td> --}}
+                        <td>{{ $company->type->type_name }}</td>
                         <td>
                             <form action="{{ route('companies.destroy', $company->id) }}" method="post">
                                 {{-- <a class="btn btn-primary" href="{{ route('companies.edit', $company->id) }}">Edit</a> --}}

@@ -12,6 +12,11 @@ class Company extends Model
 
     protected $table = 'companies';
     protected $fillable= [
-        'name','address','email','created_by_user'
+        'name','address','email','type_id','created_by_user'
     ];
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class,'type_id','id');
+    }
 }

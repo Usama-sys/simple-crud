@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use auth;
+use App\Models\Type;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,8 +18,13 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::all();
-        // dd($companies);
+        
+       
+        //  dd($type->toArray());
+        // $Type = Type::all();
+        $companies = Company::with('type')->get();
+      
+        // dd($companies->toArray());
         return view('companies.index',compact('companies'));
         
     }
@@ -29,8 +35,11 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
+    
     {
-        return view('companies.create');
+        $types = Type::all();
+        // dd($types->toArray());
+        return view('companies.create',compact('types'));
     }
 
     /**
@@ -45,7 +54,8 @@ class CompanyController extends Controller
         $request->validate([
             'name' => 'required',
             'address' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email|',
+            'type_id'=>'required',
         ]);
         //  dd($request->post());
 
@@ -72,10 +82,13 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
+        // $company = Company::with('type')->get();
+        // dd($company->toArray());
+        $types = Type::all();
             if($company->created_by_user != auth()->id()){
                 return redirect()->back()->with('deleted','You are not authorized to update this record');
             }
-            return view('companies.edit',compact('company'));
+            return view('companies.edit',compact('company','types'));
        
         // dd($company->id);
         
@@ -109,6 +122,8 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
+
+        // dd($company);
         if($company->created_by_user != auth()->id()){
             return redirect()->back()->with('deleted','You are not authorized to delete this record');
         }
